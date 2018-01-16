@@ -1,0 +1,24 @@
+{
+  "name": "image-gallery",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oskarssylwan/image-gallery.git"
+  },
+  "author": "Oskars Sylwan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oskarssylwan/image-gallery/issues"
+  },
+  "homepage": "https://github.com/oskarssylwan/image-gallery#readme",
+  "dependencies": {
+    "http-server": "^0.11.1",
+    "node-sass-chokidar": "0.0.3",
+    "webpack": "^3.10.0"
+  }
+}
