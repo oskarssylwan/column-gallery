@@ -16,7 +16,7 @@
     "watch:sass": "onchange \"src/sass/*.scss\" -- npm run build:sass",
     "watch:js": "onchange \"./src/js/*js\" -- npm run build:js",
     "watch": "npm-run-all --parallel serve watch:html watch:sass watch:js ",
-    "start": "npm run watch-css & webpack --watch",
+    "start": "npm run watch",
     "postinstall": "npm run build"
   },
   "repository": {
