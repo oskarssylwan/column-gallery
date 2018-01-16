@@ -6,16 +6,18 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ./src/js",
+    "serve": "http-server ./build -c-1 -o",
     "build:html": "cp ./src/index.html ./build/",
-    "build:sass": "node-sass-chokidar --output-style compressed -o build/ src/sass && mv ./build/style.css ./build/style.min.css",
+    "build:sass": "node-sass-chokidar --output-style compressed src/sass -o ./build",
     "build:js": "webpack  --optimize-minimize",
     "build:all": "npm-run-all build:html build:sass build:js",
     "build": "npm run build:all",
     "watch:html": "onchange \"./src/index.html\" -- npm run build:html",
     "watch:sass": "onchange \"src/sass/*.scss\" -- npm run build:sass",
     "watch:js": "onchange \"./src/js/*js\" -- npm run build:js",
-    "watch": "npm-run-all --parallel watch:html watch:sass watch:js ",
-    "start": "npm run watch-css & webpack --watch"
+    "watch": "npm-run-all --parallel serve watch:html watch:sass watch:js ",
+    "start": "npm run watch-css & webpack --watch",
+    "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",
