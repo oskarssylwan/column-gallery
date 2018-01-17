@@ -1,0 +1,35 @@
+@import 'design-system/space';
+@import 'develop';
+@import 'utilities';
+
+
+
+
+
+.image-gallery {
+  & * {margin: 0; padding: 0; box-sizing: border-box;}
+  width: 100%;
+  height: 100%;
+  background: hsl(0, 0%, 98%);
+  overflow: hidden;
+  .content {
+    width: 100%;
+    height: 100%;
+    line-height: 0;
+    font-size: 0;
+    padding: $space-inset-m;
+  }
+
+  .img-wrapper {
+    width: 100%;
+    height: 100%;
+    max-height: 200px;
+    overflow: hidden;
+    // margin: $space-stack-m;
+    // box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
