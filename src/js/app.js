@@ -9,4 +9,4 @@ const hello = function(data) {
   console.log(data);
 }
 
-fetch(config.flickrApi, hello)
+// fetch(config.flickrApi, hello)
