@@ -18,6 +18,10 @@
     line-height: 0;
     font-size: 0;
     padding: $space-inset-m;
+    display: flex;
+    .column {
+      flex:1;
+    }
   }
 
   .img-wrapper {

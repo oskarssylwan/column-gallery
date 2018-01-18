@@ -33,3 +33,15 @@ export const chunkify = (array, nChunks) => {
     return output;
   }
 }
+
+// export const classList = (operation, element, classes) => {
+//   swith (operation) {
+//     case 'add':
+//       element.setAttribute('class', 'classes');
+//       break;
+//
+//     case 'remove':
+//       const oldClasses = elment.getAttribute("class");
+//       break;
+//   }
+// }
