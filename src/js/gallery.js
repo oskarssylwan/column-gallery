@@ -21,6 +21,10 @@ class Gallery {
       this.images = data.items.map(item => this.elementBuilder.buildImg(item.media.m));
       this.renderImagesToDom();
       this.toggleImageVisibility();
+      window.onresize = () => {
+        this.height = this.gallery.offsetHeight;
+        this.toggleImageVisibility();
+      }
     });
   }
 
@@ -37,10 +41,12 @@ class Gallery {
   }
 
   toggleImageVisibility() {
-    console.log(this.height);
+    if (this.images.length >= 1) {
+      const numberToShow = parseInt((this.height / 200) - 1);
+      console.log(numberToShow);
+      this.images.forEach((img, index) => img.classList.toggle('hidden',( index > numberToShow )));
+    }
 
-    const numberToShow = parseInt(this.height / 200);
-    this.images.slice(0, numberToShow).forEach(img => img.classList.remove('hidden'));
   }
 
 
