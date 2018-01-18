@@ -14,7 +14,7 @@ export const chunkify = (array, nChunks) => {
   let arrayCopy = array.slice(0);
   let output = [];
 
-  if (nChunks === 1) return arrayCopy;
+  if (nChunks === 1) return [arrayCopy];
   else {
     while ( nChunks > 0 ) {
       output.push(arrayCopy.splice(0, length));
