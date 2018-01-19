@@ -8,7 +8,7 @@ class Gallery {
     this.options = options;
     this.category = 'nature';
     // this.userId = '66041906@N05';
-    
+
     this.userId = '139597187@N04';
     this.gallery = document.querySelector(`#${options.galleryId}`);
     this.content = document.querySelector(`#${options.galleryId} .content`);
@@ -23,7 +23,8 @@ class Gallery {
   getImages() {
     const url = this.options.flickrApi + `&id=${this.userId}`;
     fetch(url, (data) => {
-      this.images = data.items.map(item => this.elementBuilder.buildImg(item.media.m));
+      console.log(data);
+      this.images = data.items.map(item => this.elementBuilder.buildImg(item));
       this.renderColumns();
       this.toggleImageVisibility();
       window.onresize = () => {
@@ -55,18 +56,20 @@ class Gallery {
 
   toggleImageVisibility() {
     const numberOfRows = Math.floor((this.height / 200) - 1)
+
     this.columns.forEach(column => {
-      // Array.from(column.childNodes).forEach((image, index) => image.classList.toggle('hidden',( index > numberOfRows )))
       const children = Array.from(column.childNodes);
       let imageStackHeight = 0;
+
       children.forEach(child => {
         imageStackHeight += child.offsetHeight;
-        console.log(imageStackHeight);
+
         if (imageStackHeight < this.height ) {
           child.classList.remove('hidden');
         } else if (imageStackHeight ){
           child.classList.add('hidden');
         }
+
       });
     });
   }

@@ -5,18 +5,44 @@
 .image-gallery {
   & * {margin: 0; padding: 0; box-sizing: border-box;}
   width: 100%;
-  height: 100%;
-  background: hsl(0, 0%, 98%);
+  height: auto;
   overflow: hidden;
   .content {
     width: 100%;
     height: 100%;
-    line-height: 0;
-    font-size: 0;
-    padding: $space-inset-m;
+    padding: $space-inset-s;
     display: flex;
     .column {
       flex:1;
+    }
+
+    .card {
+      padding: $space-inset-s;
+      .innerContent {
+        background: hsl(0, 0%, 100%);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+        transition: transform .3s ease;
+        border-radius: 10px;
+        overflow: hidden;
+        &:hover {
+          transform: scale(1.01);
+        }
+      }
+
+      .info {
+        padding: $space-inset-stretch-s;
+        line-height: 1.5;
+        font-size: .9rem;
+        font-family: sans-serif;
+        .title {
+          // margin: $space-stack-s;
+          font-size: 1rem;
+          color: hsl(0, 0%, 40%);
+        }
+        .date {
+          color: hsl(0, 0%, 60%);
+        }
+      }
     }
   }
 
@@ -24,10 +50,7 @@
   .img-wrapper {
     width: 100%;
     height: auto;
-    // max-height: 200px;
     overflow: hidden;
-    // margin: $space-stack-m;
-    // box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
     img {
       width: 100%;
       height: auto;
