@@ -37,7 +37,11 @@ class Gallery {
   }
 
   renderColumns() {
-    const numberOfColumns = Math.floor((this.width / this.options.columnMinWidth));
+    let numberOfColumns = Math.floor((this.width / this.options.columnMinWidth));
+    console.log(numberOfColumns);
+    // numberOfColumns = (numberOfColumns > 2) ? 2 : numberOfColumns;
+
+    if (numberOfColumns < 2 ) numberOfColumns = 2;
     const columnCountDifference = Math.abs(numberOfColumns - this.prevNumberOfColumns);
     if ( columnCountDifference > 0) {
       this.clearWrapper();
