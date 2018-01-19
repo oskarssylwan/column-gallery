@@ -7,7 +7,9 @@ class Gallery {
   constructor(options) {
     this.options = options;
     this.category = 'nature';
-    this.userId = '66041906@N05';
+    // this.userId = '66041906@N05';
+    
+    this.userId = '139597187@N04';
     this.gallery = document.querySelector(`#${options.galleryId}`);
     this.content = document.querySelector(`#${options.galleryId} .content`);
     this.elementBuilder = new ElementBuilder();

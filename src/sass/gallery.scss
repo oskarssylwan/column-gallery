@@ -2,10 +2,6 @@
 @import 'develop';
 @import 'utilities';
 
-
-
-
-
 .image-gallery {
   & * {margin: 0; padding: 0; box-sizing: border-box;}
   width: 100%;
@@ -24,10 +20,11 @@
     }
   }
 
+
   .img-wrapper {
     width: 100%;
-    height: 100%;
-    max-height: 200px;
+    height: auto;
+    // max-height: 200px;
     overflow: hidden;
     // margin: $space-stack-m;
     // box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
