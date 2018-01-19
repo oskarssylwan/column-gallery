@@ -38,13 +38,15 @@ class Gallery {
 
   renderColumns() {
     let numberOfColumns = Math.floor((this.width / this.options.columnMinWidth));
-    console.log(numberOfColumns);
-    // numberOfColumns = (numberOfColumns > 2) ? 2 : numberOfColumns;
 
     if (numberOfColumns < 2 ) numberOfColumns = 2;
+
     const columnCountDifference = Math.abs(numberOfColumns - this.prevNumberOfColumns);
+
     if ( columnCountDifference > 0) {
+
       this.clearWrapper();
+
       const columns = chunkify(this.images, numberOfColumns)
                       .map(colChildren => {
                         const column = this.elementBuilder.column();
@@ -52,6 +54,7 @@ class Gallery {
                         this.content.appendChild(column);
                         return column;
                       });
+
       this.columns = columns;
       this.prevNumberOfColumns = numberOfColumns;
     }
