@@ -1,7 +1,7 @@
 
 export default class ElementBuilder {
 
-  buildImg(imageData) {
+  buildImgCard(imageData) {
     const card = document.createElement('div');
     const innerContent = document.createElement('div');
     const body = document.createElement('div');
@@ -15,6 +15,7 @@ export default class ElementBuilder {
     imgWrapper.setAttribute('class', 'img-wrapper');
     img.setAttribute('src', imageData.media.m);
     img.setAttribute('alt', imageData.title);
+    // img.addEventListener('load', onload);
 
     imgWrapper.appendChild(img);
     body.appendChild(imgWrapper);

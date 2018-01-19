@@ -23,8 +23,7 @@ class Gallery {
   getImages() {
     const url = this.options.flickrApi + `&id=${this.userId}`;
     fetch(url, (data) => {
-      console.log(data);
-      this.images = data.items.map(item => this.elementBuilder.buildImg(item));
+      this.images = data.items.map(item => this.elementBuilder.buildImgCard(item));
       this.renderColumns();
       this.toggleImageVisibility();
       window.onresize = () => {
@@ -84,6 +83,10 @@ class Gallery {
   clearWrapper() {
     Array.from(this.content.childNodes).forEach(child => this.content.removeChild(child));
   }
+
+  // onImageLoad() {
+  //   this.addEventListener()
+  // }
 }
 
 export default Gallery;
