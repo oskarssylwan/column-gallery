@@ -34,14 +34,30 @@ export const chunkify = (array, nChunks) => {
   }
 }
 
-// export const classList = (operation, element, classes) => {
-//   swith (operation) {
-//     case 'add':
-//       element.setAttribute('class', 'classes');
-//       break;
-//
-//     case 'remove':
-//       const oldClasses = elment.getAttribute("class");
-//       break;
-//   }
-// }
+// flickr specific utility functions
+
+export const buildDataObjects = (flickrData) => {
+  return flickrData.items.map(item => {
+    return {
+      title: item.title,
+      date_taken: formatDate(item.date_taken),
+      url: item.media.m,
+      dimensions: extractDimensions(item.description)
+    }
+  })
+}
+
+export const extractDimensions = (string) => {
+  let height = string.match(/height="\d+"/i)[0].match(/\d+/g)[0];
+  let width = string.match(/width="\d+"/i)[0].match(/\d+/g)[0];
+  height = parseInt(height);
+  width = parseInt(width);
+
+  return { width, height };
+}
+
+export const formatDate = (string) => {
+  const formatedDate = string.match(/\d{4}-\d{2}-\d{2}/i)[0]
+                             .replace(/-/g, ' / ');
+  return formatedDate;
+}

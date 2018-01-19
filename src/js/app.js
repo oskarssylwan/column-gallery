@@ -1,8 +1,12 @@
 // Imports
 import config from '../config';
 import Gallery from './gallery';
-import { chunkify } from './utilities';
+import { fetch, buildDataObjects } from './utilities';
 
 
+const url = config.flickrApi + `&id=${config.userId}`;
 const gallery = new Gallery(config);
-gallery.getImages();
+
+fetch(url, (data) => {
+  console.log(buildDataObjects(data));
+});

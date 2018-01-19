@@ -1,53 +1,57 @@
 
-export default class ElementBuilder {
 
-  buildImgCard(imageData) {
-    const card = document.createElement('div');
-    const innerContent = document.createElement('div');
-    const body = document.createElement('div');
-    const info = this.buildInfo(imageData.title, imageData.date_taken);
-    const imgWrapper = document.createElement('div');
-    const img = document.createElement('img');
 
-    card.setAttribute('class', 'card hidden');
-    innerContent.setAttribute('class', 'innerContent');
-    body.setAttribute('class', 'body');
-    imgWrapper.setAttribute('class', 'img-wrapper');
-    img.setAttribute('src', imageData.media.m);
-    img.setAttribute('alt', imageData.title);
-    // img.addEventListener('load', onload);
+export const buildImgCard = (title, date_taken, url, onLoad)  => {
+  const card = document.createElement('div');
+  const innerContent = document.createElement('div');
+  const body = document.createElement('div');
+  const info = buildInfo(title, date_taken);
+  const imgWrapper = document.createElement('div');
+  const img = document.createElement('img');
 
-    imgWrapper.appendChild(img);
-    body.appendChild(imgWrapper);
-    innerContent.appendChild(body);
-    innerContent.appendChild(info);
-    card.appendChild(innerContent);
+  card.setAttribute('class', 'card not-loaded hidden');
+  innerContent.setAttribute('class', 'innerContent');
+  body.setAttribute('class', 'body');
+  imgWrapper.setAttribute('class', 'img-wrapper');
+  img.setAttribute('src', url);
+  img.setAttribute('alt', title);
+  img.addEventListener('load', onload);
 
-    return card;
-  }
+  imgWrapper.appendChild(img);
+  body.appendChild(imgWrapper);
+  innerContent.appendChild(body);
+  innerContent.appendChild(info);
+  card.appendChild(innerContent);
 
-  column() {
-    const column = document.createElement('div');
-    column.setAttribute('class', 'column');
-    return column;
-  }
+  return card;
+}
 
-  buildInfo(titleData, dateData) {
-    const info = document.createElement('header');
-    const title = document.createElement('h5');
-    const date = document.createElement('span');
+export const buildColumn = () => {
+  const column = document.createElement('div');
+  column.setAttribute('class', 'column');
+  return column;
+}
 
-    info.setAttribute('class', 'info');
-    title.setAttribute('class', 'title');
-    date.setAttribute('class', 'date');
+export const buildInfo = (titleData, dateData) => {
+  const info = document.createElement('header');
+  const title = document.createElement('h5');
+  const date = document.createElement('span');
 
-    title.innerHTML = titleData;
-    date.innerHTML = dateData;
+  info.setAttribute('class', 'info');
+  title.setAttribute('class', 'title');
+  date.setAttribute('class', 'date');
 
-    info.appendChild(title);
-    info.appendChild(date);
+  title.innerHTML = titleData;
+  date.innerHTML = dateData;
 
-    return info;
-  }
+  info.appendChild(title);
+  info.appendChild(date);
 
+  return info;
+}
+
+export const buildCardGroup = () => {
+  const content = document.createElement('div');
+  content.classList.add('card-group');
+  return content;
 }
