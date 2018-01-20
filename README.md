@@ -5,6 +5,7 @@ Simple stand-alone image gallery that fetches images from the flickr public API
 ## Table of Contents
 
 - [Getting Started](#getting-started)
+- [Improvements](#improvements)
 
 ## Getting Started
 Keep in mind that if you are developing on windows
@@ -15,3 +16,8 @@ git clone https://github.com/oskarssylwan/image-gallery && cd image-gallery
 npm install
 npm start
 ```
+
+
+## Improvements
+### On Image Load
+Currently the toggleImageVisibility() function is called every time a image is loaded.

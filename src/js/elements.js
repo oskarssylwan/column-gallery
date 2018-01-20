@@ -15,7 +15,7 @@ export const buildImgCard = (title, date_taken, url, onLoad)  => {
   imgWrapper.setAttribute('class', 'img-wrapper');
   img.setAttribute('src', url);
   img.setAttribute('alt', title);
-  img.addEventListener('load', onload);
+  img.addEventListener('load', () => onLoad());
 
   imgWrapper.appendChild(img);
   body.appendChild(imgWrapper);
@@ -51,7 +51,7 @@ export const buildInfo = (titleData, dateData) => {
 }
 
 export const buildCardGroup = () => {
-  const content = document.createElement('div');
-  content.classList.add('card-group');
-  return content;
+  const cardGroup = document.createElement('div');
+  cardGroup.classList.add('card-group');
+  return cardGroup;
 }

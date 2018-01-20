@@ -1,5 +1,4 @@
 import { buildImgCard, buildColumn, buildCardGroup} from './elements';
-import { fetch, chunkify } from './utilities';
 import ImageCard from './image-card';
 
 
@@ -9,52 +8,54 @@ class Gallery {
     this.options = options;
     this.gallery = document.querySelector(`#${options.galleryId}`);
     this.cardGroup = buildCardGroup();
-    this.updateDiensions()
+    this.updateDimensions()
     this.columns = [];
     this.images = [];
     this.prevNumberOfColumns =  0;
-    this.gallery.appendChild(this.cardGroup);
 
+    this.gallery.appendChild(this.cardGroup);
   }
 
   populate(imageData) {
     this.loadImages(imageData);
-    this.onDimensionChange()
-    window.onresize = this.onDimensionChange;
+    this.renderColumns();
+    window.onresize = () => this.onDimensionChange();
   }
 
   loadImages(imageData) {
+    const onLoad = () => {
+      this.toggleImageVisibility();
+    }
     this.images = imageData.map(data =>
-      new ImageCard(data.title, data.date_taken, data.url, data.dimensions));
+      new ImageCard(data.title, data.date_taken, data.url, data.dimensions, onLoad));
   }
 
-  updateDiensions() {
-    this.height = this.gallery.offsetHeight;
-    this.width = this.gallery.offsetWidth;
-  }
 
-  onDimensionChange() {
-    this.updateDiensions();
+
+  onDimensionChange () {
+    this.updateDimensions();
     this.renderColumns();
     this.toggleImageVisibility();
+  }
+
+  updateDimensions() {
+    this.height = this.gallery.offsetHeight;
+    this.width = this.gallery.offsetWidth;
   }
 
   renderColumns() {
     const {minNumberOfColumns, columnMinWidth } = this.options;
     let numberOfColumns = Math.floor((this.width / columnMinWidth));
-
-    if (numberOfColumns < minNumberOfColumns ) numberOfColumns = 2;
+    numberOfColumns = numberOfColumns < minNumberOfColumns ? minNumberOfColumns : numberOfColumns;
     const columnCountDifference = Math.abs(numberOfColumns - this.prevNumberOfColumns);
-
-    console.log(this.spreadEven(this.images, 4));
 
     if ( columnCountDifference > 0) {
       this.clearCardGroup();
 
-      const columns = chunkify(this.images, numberOfColumns)
-                      .map(colChildren => {
+      const columns = this.spreadEven(this.images, numberOfColumns)
+                      .map(columnItems => {
                         const column = buildColumn();
-                        colChildren.forEach(child => column.appendChild(child));
+                        columnItems.forEach(imgObj => column.appendChild(imgObj.element));
                         this.cardGroup.appendChild(column);
                         return column;
                       });
@@ -64,7 +65,8 @@ class Gallery {
   }
 
   toggleImageVisibility() {
-    const numberOfRows = Math.floor((this.height / 200) - 1)
+    let galleryContainerHeight = window.getComputedStyle(this.gallery.parentNode, null).height;
+    galleryContainerHeight = parseInt(galleryContainerHeight);
 
     this.columns.forEach(column => {
       const children = Array.from(column.childNodes);
@@ -73,7 +75,7 @@ class Gallery {
       children.forEach(child => {
         imageStackHeight += child.offsetHeight;
 
-        if (imageStackHeight < this.height ) {
+        if (imageStackHeight <  galleryContainerHeight ) {
           child.classList.remove('hidden');
         } else if (imageStackHeight ){
           child.classList.add('hidden');

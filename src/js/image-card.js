@@ -1,7 +1,7 @@
 import { buildImgCard } from './elements';
 
 class ImageCard {
-  constructor(title, date_taken, url, dimensions) {
+  constructor(title, date_taken, url, dimensions, onLoad) {
     this.title = title;
     this.date_taken = date_taken;
     this.url = url;
@@ -9,11 +9,13 @@ class ImageCard {
     this.width = dimensions.width;
     this.loaded = false;
     this.overfowing = true;
-    this.element = buildImgCard(title, date_taken, url, this.onLoad);
+    this.element = buildImgCard(title, date_taken, url, this.onLoad.bind(this));
+    this.onLoadProp = onLoad;
   }
 
+
   onLoad(event) {
-    this.loaded = true;
+    this.onLoadProp();
   }
 
 }
