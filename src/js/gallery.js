@@ -27,7 +27,7 @@ class Gallery {
       this.toggleImageVisibility();
     }
     this.images = imageData.map(data =>
-      new ImageCard(data.title, data.date_taken, data.url, data.dimensions, onLoad));
+      new ImageCard(data.title, data.date_taken, data.url, data.link, data.dimensions, onLoad));
   }
 
 

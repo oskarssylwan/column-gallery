@@ -46,6 +46,7 @@ export const buildDataObjects = (flickrData) => {
       title: item.title,
       date_taken: formatDate(item.date_taken),
       url: item.media.m,
+      link: item.link,
       dimensions: extractDimensions(item.description)
     }
   })

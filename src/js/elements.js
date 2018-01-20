@@ -1,11 +1,11 @@
 
 
 
-export const buildImgCard = (title, date_taken, url, onLoad)  => {
+export const buildImgCard = (title, date_taken, url, link, onLoad)  => {
   const card = document.createElement('div');
   const innerContent = document.createElement('div');
   const body = document.createElement('div');
-  const info = buildInfo(title, date_taken);
+  const info = buildInfo(title, date_taken, link);
   const imgWrapper = document.createElement('div');
   const img = document.createElement('img');
 
@@ -32,14 +32,15 @@ export const buildColumn = () => {
   return column;
 }
 
-export const buildInfo = (titleData, dateData) => {
+export const buildInfo = (titleData, dateData, link) => {
   const info = document.createElement('header');
   const title = document.createElement('h5');
-  const date = document.createElement('span');
+  const date = document.createElement('a');
 
   info.setAttribute('class', 'info');
   title.setAttribute('class', 'title');
   date.setAttribute('class', 'date');
+  date.href = link;
 
   title.innerHTML = titleData;
   date.innerHTML = dateData;
