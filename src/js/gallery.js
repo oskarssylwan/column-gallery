@@ -9,8 +9,7 @@ class Gallery {
     this.options = options;
     this.gallery = document.querySelector(`#${options.galleryId}`);
     this.cardGroup = buildCardGroup();
-    this.height = this.gallery.offsetHeight;
-    this.width = this.gallery.offsetWidth;
+    this.updateDiensions()
     this.columns = [];
     this.images = [];
     this.prevNumberOfColumns =  0;
@@ -19,8 +18,8 @@ class Gallery {
   }
 
   populate(imageData) {
-    this.images = this.loadImages(imageData);
-    onDimensionChange()
+    this.loadImages(imageData);
+    this.onDimensionChange()
     window.onresize = this.onDimensionChange;
   }
 
@@ -47,8 +46,11 @@ class Gallery {
     if (numberOfColumns < minNumberOfColumns ) numberOfColumns = 2;
     const columnCountDifference = Math.abs(numberOfColumns - this.prevNumberOfColumns);
 
+    console.log(this.spreadEven(this.images, 4));
+
     if ( columnCountDifference > 0) {
-      this.clearWrapper();
+      this.clearCardGroup();
+
       const columns = chunkify(this.images, numberOfColumns)
                       .map(colChildren => {
                         const column = buildColumn();
@@ -59,7 +61,6 @@ class Gallery {
       this.columns = columns;
       this.prevNumberOfColumns = numberOfColumns;
     }
-
   }
 
   toggleImageVisibility() {
@@ -82,9 +83,50 @@ class Gallery {
     });
   }
 
-  clearWrapper() {
-    Array.from(this.content.childNodes)
-          .forEach(child => this.content.removeChild(child));
+  spreadEven(imgDataObjects, numberOfColumns) {
+    const reducer = (totalHeight, curImgObj) => totalHeight + curImgObj.height;
+    const totalStackHeight = imgDataObjects.reduce(reducer, 0);
+    const desiredColumnHeight = Math.floor(totalStackHeight / numberOfColumns);
+    const arrayCopy = imgDataObjects.slice(0);
+    const output = [];
+
+    if (numberOfColumns === 1) {
+      return [arrayCopy];
+    }
+    else {
+      while ( numberOfColumns > 0 ) {
+        let columnHeight = 0;
+        let cutListAt = 1;
+
+        arrayCopy.forEach((item, index) => {
+          if (columnHeight < desiredColumnHeight ) {
+            columnHeight += item.height;
+            cutListAt = index;
+          }
+        });
+
+        output.push({
+          columnHeight,
+          columnItems: arrayCopy.splice(0, cutListAt)
+        });
+
+        numberOfColumns -= 1;
+      }
+
+      // Handle Leftovers
+      arrayCopy.forEach(item => {
+        output.sort((a, b) => a.columnHeight - b.columnHeight);
+        output[0].columnHeight += item.height;
+        output[0].columnItems.push(item);
+      });
+
+    }
+     return  output.map(item => item.columnItems);
+  }
+
+  clearCardGroup() {
+    Array.from(this.cardGroup.childNodes)
+         .forEach(child => this.cardGroup.removeChild(child));
   }
 }
 

@@ -9,6 +9,8 @@ export const fetch = (url, callback) => {
   gallery.appendChild(script);
 }
 
+
+// Divides an array into the specefied number of chunks
 export const chunkify = (array, nChunks) => {
   const length = Math.floor(array.length / nChunks);
   let arrayCopy = array.slice(0);
@@ -34,7 +36,9 @@ export const chunkify = (array, nChunks) => {
   }
 }
 
+// ==================================
 // flickr specific utility functions
+// =================================
 
 export const buildDataObjects = (flickrData) => {
   return flickrData.items.map(item => {
@@ -52,7 +56,6 @@ export const extractDimensions = (string) => {
   let width = string.match(/width="\d+"/i)[0].match(/\d+/g)[0];
   height = parseInt(height);
   width = parseInt(width);
-
   return { width, height };
 }
 

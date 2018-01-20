@@ -3,7 +3,7 @@ import { buildImgCard } from './elements';
 class ImageCard {
   constructor(title, date_taken, url, dimensions) {
     this.title = title;
-    this.date = date;
+    this.date_taken = date_taken;
     this.url = url;
     this.height = dimensions.height;
     this.width = dimensions.width;
@@ -17,3 +17,5 @@ class ImageCard {
   }
 
 }
+
+export default ImageCard;
