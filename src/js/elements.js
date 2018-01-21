@@ -3,14 +3,16 @@ import loadingIcon from './icons';
 
 export const buildImgCard = (title, date_taken, url, link, onLoad)  => {
   const card = document.createElement('div');
-  const innerContent = document.createElement('div');
+  const innerContent = document.createElement('a');
   const body = document.createElement('div');
-  const info = buildInfo(title, date_taken, link);
+  const info = buildCardInfo(title, date_taken);
   const imgWrapper = document.createElement('div');
   const img = document.createElement('img');
 
   card.setAttribute('class', 'card not-loaded hidden');
   innerContent.setAttribute('class', 'innerContent');
+  innerContent.href = link;
+  innerContent.target = '_blank';
   body.setAttribute('class', 'body');
   imgWrapper.setAttribute('class', 'img-wrapper');
   img.setAttribute('src', url);
@@ -32,15 +34,14 @@ export const buildColumn = () => {
   return column;
 }
 
-export const buildInfo = (titleData, dateData, link) => {
+export const buildCardInfo = (titleData, dateData) => {
   const info = document.createElement('header');
   const title = document.createElement('h5');
-  const date = document.createElement('a');
+  const date = document.createElement('span');
 
   info.setAttribute('class', 'info');
   title.setAttribute('class', 'title');
   date.setAttribute('class', 'date');
-  date.href = link;
 
   title.innerHTML = titleData;
   date.innerHTML = dateData;
