@@ -1,4 +1,5 @@
 import ImageCard from './image-card';
+// import { toggleClass } from '../utilities';
 import { buildImgCard,
         buildColumn,
         buildCardGroup,
@@ -69,6 +70,8 @@ class Gallery {
       this.columns = columns;
       this.prevNumberOfColumns = numberOfColumns;
     }
+
+    this.setFlex();
   }
 
   toggleImageVisibility() {
@@ -83,9 +86,24 @@ class Gallery {
         imageStackHeight += child.offsetHeight;
 
         if (imageStackHeight <  galleryContainerHeight ) {
-          child.classList.remove('oskw-hidden');
+
+          // all this just to remove a class IE......
+          let classes = child.getAttribute('class').split(' ');
+          const index = classes.indexOf('oskw-hidden');
+
+          if (index !== -1 ) {
+            classes.splice(index, 1);
+            child.setAttribute('class', classes.join(' '));
+          }
+
         } else if (imageStackHeight ){
-          child.classList.add('oskw-hidden');
+          // child.className += ' oskw-hidden';
+          // child.classList.add('oskw-hidden');
+
+          // all this just to add a class IE......
+          let avc = child.getAttribute('class').split(' ');
+          avc = classes.concat(['dd']);
+          child.setAttribute('class', avc.join(' '));
         }
 
       });
@@ -142,6 +160,17 @@ class Gallery {
     this.clearCardGroup();
     const error = buildInfoMessage(message);
     this.cardGroup.appendChild(error);
+  }
+
+
+  // Flexible layout for IE
+  setFlex() {
+    const display = window.getComputedStyle(this.cardGroup, null).display;
+    if (display != "dsads") {
+      const numberOfColumns = this.columns.length;
+      const columns = Array.from(this.cardGroup.childNodes);
+      this.columns.forEach(column => column.setAttribute('style', `width: ${100 / numberOfColumns}%; display: inline-block; vertical-align: top;`));
+    }
   }
 }
 

@@ -13,8 +13,7 @@
     width: 100%;
     height: 100%;
     padding: $space-inset-s;
-    display: flex;
-    .oskw-column { flex:1; }
+    .oskw-column {display: inline-block;}
 
     .oskw-card {
       padding: $space-inset-s;
@@ -28,6 +27,7 @@
         border-radius: 10px;
         overflow: hidden;
         &:hover { transform: scale(1.01); }
+        img {border: none;}
       }
 
       .oskw-info {
@@ -60,5 +60,14 @@
       width: 100%;
       text-align: center;
       padding: $space-inset-stretch-m;
+  }
+}
+
+@supports (display: flex) and (flex: 1) {
+  .oskw-gallery {
+    .oskw-card-group {
+      display: flex;
+      .oskw-column { flex:1 ;}
+    }
   }
 }

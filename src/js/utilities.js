@@ -10,6 +10,16 @@ export const fetch = (url, callback, onError) => {
   gallery.appendChild(script);
 }
 
+export const toggleClass = (element, className) => {
+  let classes = element.getAttribute('class');
+  classes = classes.split(' ');
+
+  if (classes.includes(className)) {
+    
+  } else {
+
+  }
+}
 
 // Divides an array into the specefied number of chunks
 export const chunkify = (array, nChunks) => {
