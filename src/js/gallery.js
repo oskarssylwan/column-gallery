@@ -1,5 +1,11 @@
-import { buildImgCard, buildColumn, buildCardGroup} from './elements';
 import ImageCard from './image-card';
+import { buildImgCard,
+        buildColumn,
+        buildCardGroup,
+        buildInfoMessage,
+        buildLoadingIcon } from './elements';
+
+
 
 
 
@@ -12,8 +18,9 @@ class Gallery {
     this.columns = [];
     this.images = [];
     this.prevNumberOfColumns =  0;
-
     this.gallery.appendChild(this.cardGroup);
+    this.cardGroup.appendChild(buildLoadingIcon());
+
   }
 
   populate(imageData) {
@@ -129,6 +136,12 @@ class Gallery {
   clearCardGroup() {
     Array.from(this.cardGroup.childNodes)
          .forEach(child => this.cardGroup.removeChild(child));
+  }
+
+  onError(message) {
+    this.clearCardGroup();
+    const error = buildInfoMessage(message);
+    this.cardGroup.appendChild(error);
   }
 }
 

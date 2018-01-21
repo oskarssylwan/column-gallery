@@ -1,6 +1,8 @@
 @import 'design-system/space';
 @import 'develop';
 @import 'utilities';
+@import 'icons';
+@import 'animations';
 
 .image-gallery {
   & * {margin: 0; padding: 0; box-sizing: border-box;}
@@ -56,5 +58,12 @@
       width: 100%;
       height: auto;
     }
+  }
+
+  .oskw-error-message {
+      color: hsl(0, 0%, 40%);
+      width: 100%;
+      text-align: center;
+      padding: $space-inset-stretch-m;
   }
 }

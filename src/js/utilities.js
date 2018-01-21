@@ -2,10 +2,11 @@ import config from '../config';
 const gallery = document.querySelector(`#${config.galleryId}`);
 
 
-export const fetch = (url, callback) => {
+export const fetch = (url, callback, onError) => {
   const script = document.createElement('script');
   window.jsoncallback = callback;
   script.src = url + '&jsoncallback=jsoncallback';
+  script.onerror = () => onError();
   gallery.appendChild(script);
 }
 

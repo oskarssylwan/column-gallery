@@ -1,4 +1,4 @@
-
+import loadingIcon from './icons';
 
 
 export const buildImgCard = (title, date_taken, url, link, onLoad)  => {
@@ -55,4 +55,18 @@ export const buildCardGroup = () => {
   const cardGroup = document.createElement('div');
   cardGroup.classList.add('card-group');
   return cardGroup;
+}
+
+export const buildInfoMessage = (message) => {
+  const InfoMessage = document.createElement('div');
+  InfoMessage.classList.add('oskw-error-message');
+  InfoMessage.innerHTML = message;
+  return InfoMessage;
+}
+
+export const buildLoadingIcon = () => {
+  const img = document.createElement('div');
+  img.classList.add('loading-icon', 'rotating');
+  img.src = loadingIcon;
+  return img;
 }
