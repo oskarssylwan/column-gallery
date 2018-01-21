@@ -1,5 +1,4 @@
 
-slow load InfoMessage
 documentation
 separate color
 
@@ -13,8 +12,7 @@ DONE
   test on IE
     alternative for flexbox
     loading icon alternative for ie
-    
-
+  slow load InfoMessage
 
 
 POSTPONED

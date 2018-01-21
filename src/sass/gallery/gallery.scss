@@ -1,4 +1,5 @@
 @import '../design-system/space';
+@import '../design-system/color';
 @import '../example';
 @import 'utilities';
 @import 'icons';
@@ -38,9 +39,9 @@
         font-family: sans-serif;
         .oskw-title {
           font-size: 1rem;
-          color: hsl(0, 0%, 40%);
+          color: $color-gray-40;
         }
-        .oskw-date { color: hsl(0, 0%, 60%); }
+        .oskw-date { color: $color-gray-60; }
       }
     }
   }
@@ -60,7 +61,7 @@
       // position: absolute;
       // top: 0; bottom: 0;
       width: 100%;
-      color: hsl(0, 0%, 40%);
+      color: $color-gray-40;
       text-align: center;
       padding: $space-inset-stretch-m;
   }
