@@ -1,6 +1,5 @@
 
 // flickr specific utility functions
-
 export const buildDataObjects = (flickrData) => {
   return flickrData.items.map(item => {
     return {
