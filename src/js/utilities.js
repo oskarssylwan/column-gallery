@@ -1,5 +1,5 @@
-import config from '../config';
-const gallery = document.querySelector(`#${config.galleryId}`);
+import options from './gallery/options';
+const gallery = document.querySelector(`#${options.galleryId}`);
 
 
 export const fetch = (url, callback, onError) => {

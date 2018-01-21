@@ -1,5 +1,3 @@
-import loadingIcon from './icons';
-
 
 export const buildImgCard = (title, date_taken, url, link, onLoad)  => {
   const card = document.createElement('div');
@@ -68,6 +66,5 @@ export const buildInfoMessage = (message) => {
 export const buildLoadingIcon = () => {
   const img = document.createElement('div');
   img.classList.add('oskw-loading-icon', 'oskw-rotating');
-  img.src = loadingIcon;
   return img;
 }

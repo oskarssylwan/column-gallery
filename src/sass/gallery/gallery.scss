@@ -1,5 +1,5 @@
-@import 'design-system/space';
-@import 'develop';
+@import '../design-system/space';
+@import '../example';
 @import 'utilities';
 @import 'icons';
 @import 'animations';
@@ -14,9 +14,7 @@
     height: 100%;
     padding: $space-inset-s;
     display: flex;
-    .oskw-column {
-      flex:1;
-    }
+    .oskw-column { flex:1; }
 
     .oskw-card {
       padding: $space-inset-s;
@@ -29,9 +27,7 @@
         transition: transform .3s ease;
         border-radius: 10px;
         overflow: hidden;
-        &:hover {
-          transform: scale(1.01);
-        }
+        &:hover { transform: scale(1.01); }
       }
 
       .oskw-info {
@@ -43,9 +39,7 @@
           font-size: 1rem;
           color: hsl(0, 0%, 40%);
         }
-        .oskw-date {
-          color: hsl(0, 0%, 60%);
-        }
+        .oskw-date { color: hsl(0, 0%, 60%); }
       }
     }
   }

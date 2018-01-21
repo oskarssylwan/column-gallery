@@ -13,8 +13,8 @@
     "build:all": "npm-run-all build:html build:sass build:js",
     "build": "npm run build:all",
     "watch:html": "onchange \"./src/index.html\" -- npm run build:html",
-    "watch:sass": "onchange \"src/sass/*.scss\" -- npm run build:sass",
-    "watch:js": "onchange \"./src/js/*js\" -- webpack",
+    "watch:sass": "onchange \"src/sass/\" -- npm run build:sass",
+    "watch:js": "onchange \"./src/js/\" -- webpack",
     "watch": "npm-run-all --parallel serve watch:html watch:sass watch:js ",
     "start": "npm run watch",
     "postinstall": "npm run build"

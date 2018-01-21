@@ -5,10 +5,6 @@ import { buildImgCard,
         buildInfoMessage,
         buildLoadingIcon } from './elements';
 
-
-
-
-
 class Gallery {
   constructor(options) {
     this.options = options;
@@ -24,15 +20,19 @@ class Gallery {
   }
 
   populate(imageData) {
-    this.loadImages(imageData);
-    this.renderColumns();
-    window.onresize = () => this.onDimensionChange();
+    if (imageData.length < 1 )  {
+      this.onError("We couldn't find any images!");
+
+    } else {
+      this.loadImages(imageData);
+      this.renderColumns();
+      window.onresize = () => this.onDimensionChange();
+    }
   }
 
   loadImages(imageData) {
-    const onLoad = () => {
-      this.toggleImageVisibility();
-    }
+    const onLoad = () => this.toggleImageVisibility();
+
     this.images = imageData.map(data =>
       new ImageCard(data.title, data.date_taken, data.url, data.link, data.dimensions, onLoad));
   }
