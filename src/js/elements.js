@@ -9,12 +9,12 @@ export const buildImgCard = (title, date_taken, url, link, onLoad)  => {
   const imgWrapper = document.createElement('div');
   const img = document.createElement('img');
 
-  card.setAttribute('class', 'card not-loaded hidden');
-  innerContent.setAttribute('class', 'innerContent');
+  card.classList.add('oskw-card', 'oskw-not-loaded', 'oskw-hidden');
+  innerContent.classList.add('oskw-inner-content');
   innerContent.href = link;
   innerContent.target = '_blank';
-  body.setAttribute('class', 'body');
-  imgWrapper.setAttribute('class', 'img-wrapper');
+  body.classList.add('oskw-body');
+  imgWrapper.classList.add('oskw-img-wrapper');
   img.setAttribute('src', url);
   img.setAttribute('alt', title);
   img.addEventListener('load', () => onLoad());
@@ -30,7 +30,7 @@ export const buildImgCard = (title, date_taken, url, link, onLoad)  => {
 
 export const buildColumn = () => {
   const column = document.createElement('div');
-  column.setAttribute('class', 'column');
+  column.classList.add('oskw-column');
   return column;
 }
 
@@ -39,9 +39,9 @@ export const buildCardInfo = (titleData, dateData) => {
   const title = document.createElement('h5');
   const date = document.createElement('span');
 
-  info.setAttribute('class', 'info');
-  title.setAttribute('class', 'title');
-  date.setAttribute('class', 'date');
+  info.classList.add('oskw-info');
+  title.classList.add('oskw-title');
+  date.classList.add('oskw-date');
 
   title.innerHTML = titleData;
   date.innerHTML = dateData;
@@ -54,7 +54,7 @@ export const buildCardInfo = (titleData, dateData) => {
 
 export const buildCardGroup = () => {
   const cardGroup = document.createElement('div');
-  cardGroup.classList.add('card-group');
+  cardGroup.classList.add('oskw-card-group');
   return cardGroup;
 }
 
@@ -67,7 +67,7 @@ export const buildInfoMessage = (message) => {
 
 export const buildLoadingIcon = () => {
   const img = document.createElement('div');
-  img.classList.add('loading-icon', 'rotating');
+  img.classList.add('oskw-loading-icon', 'oskw-rotating');
   img.src = loadingIcon;
   return img;
 }

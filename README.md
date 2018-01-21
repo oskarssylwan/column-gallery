@@ -17,7 +17,7 @@ npm install
 npm start
 ```
 
-
+## non intrusive
 ## Improvements
 ### On Image Load
 Currently the toggleImageVisibility() function is called every time a image is loaded.

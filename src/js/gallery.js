@@ -83,9 +83,9 @@ class Gallery {
         imageStackHeight += child.offsetHeight;
 
         if (imageStackHeight <  galleryContainerHeight ) {
-          child.classList.remove('hidden');
+          child.classList.remove('oskw-hidden');
         } else if (imageStackHeight ){
-          child.classList.add('hidden');
+          child.classList.add('oskw-hidden');
         }
 
       });
