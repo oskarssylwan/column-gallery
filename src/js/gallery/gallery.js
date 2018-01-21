@@ -38,8 +38,6 @@ class Gallery {
       new ImageCard(data.title, data.date_taken, data.url, data.link, data.dimensions, onLoad));
   }
 
-
-
   onDimensionChange () {
     this.updateDimensions();
     this.renderColumns();
@@ -86,7 +84,6 @@ class Gallery {
         imageStackHeight += child.offsetHeight;
 
         if (imageStackHeight <  galleryContainerHeight ) {
-
           // all this just to remove a class IE......
           let classes = child.getAttribute('class').split(' ');
           const index = classes.indexOf('oskw-hidden');
@@ -97,13 +94,13 @@ class Gallery {
           }
 
         } else if (imageStackHeight ){
-          // child.className += ' oskw-hidden';
-          // child.classList.add('oskw-hidden');
-
-          // all this just to add a class IE......
-          let avc = child.getAttribute('class').split(' ');
-          avc = classes.concat(['dd']);
-          child.setAttribute('class', avc.join(' '));
+            // all this just to add a class IE......
+            let classes = child.getAttribute('class').split(' ');
+            if (!classes.includes('oskw-hidden')) {
+              classes.push('oskw-hidden');
+              child.setAttribute('class', classes.join(' '));
+          }
+          
         }
 
       });

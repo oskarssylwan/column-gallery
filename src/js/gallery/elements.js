@@ -7,7 +7,7 @@ export const buildImgCard = (title, date_taken, url, link, onLoad)  => {
   const imgWrapper = document.createElement('div');
   const img = document.createElement('img');
 
-  card.setAttribute('class', 'oskw-card oskw-not-loaded oskw-hidden remove-this-class');
+  card.setAttribute('class', 'oskw-card oskw-not-loaded oskw-hidden');
   innerContent.setAttribute('class', 'oskw-inner-content');
   innerContent.href = link;
   innerContent.target = '_blank';
