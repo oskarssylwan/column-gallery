@@ -1,5 +1,5 @@
 import ImageCard from './image-card';
-// import { toggleClass } from '../utilities';
+import { classlist } from '../utilities';
 import { buildImgCard,
         buildColumn,
         buildCardGroup,
@@ -14,25 +14,36 @@ class Gallery {
     this.updateDimensions()
     this.columns = [];
     this.images = [];
+    this.infoMessage = buildInfoMessage();
     this.prevNumberOfColumns =  0;
+    this.infoMessage.appendChild(buildLoadingIcon());
+    this.gallery.appendChild(this.infoMessage);
     this.gallery.appendChild(this.cardGroup);
-    this.cardGroup.appendChild(buildLoadingIcon());
+
+    this.firstImageLoaded = false;
 
   }
 
   populate(imageData) {
-    if (imageData.length < 1 )  {
-      this.onError("We couldn't find any images!");
+    this.loadImages(imageData);
+    this.renderColumns();
+    window.onresize = () => this.onDimensionChange();
 
-    } else {
-      this.loadImages(imageData);
-      this.renderColumns();
-      window.onresize = () => this.onDimensionChange();
-    }
+    window.setTimeout(() => {
+      if (imageData.length < 1 ) {
+        this.onError("We couldn't find any images!");
+      } else if (!this.firstImageLoaded) {
+        this.onError('This is takig longer than we expected....');
+      }
+    }, 1500)
   }
 
   loadImages(imageData) {
-    const onLoad = () => this.toggleImageVisibility();
+    const onLoad = () => {
+      if (!this.firstImageLoaded) this.gallery.removeChild(this.infoMessage);
+      this.firstImageLoaded = true;
+      this.toggleImageVisibility();
+    };
 
     this.images = imageData.map(data =>
       new ImageCard(data.title, data.date_taken, data.url, data.link, data.dimensions, onLoad));
@@ -56,7 +67,7 @@ class Gallery {
     const columnCountDifference = Math.abs(numberOfColumns - this.prevNumberOfColumns);
 
     if ( columnCountDifference > 0) {
-      this.clearCardGroup();
+      if (this.firstImageLoaded ) this.clearCardGroup();
 
       const columns = this.spreadEven(this.images, numberOfColumns)
                       .map(columnItems => {
@@ -84,23 +95,9 @@ class Gallery {
         imageStackHeight += child.offsetHeight;
 
         if (imageStackHeight <  galleryContainerHeight ) {
-          // all this just to remove a class IE......
-          let classes = child.getAttribute('class').split(' ');
-          const index = classes.indexOf('oskw-hidden');
-
-          if (index !== -1 ) {
-            classes.splice(index, 1);
-            child.setAttribute('class', classes.join(' '));
-          }
-
-        } else if (imageStackHeight ){
-            // all this just to add a class IE......
-            let classes = child.getAttribute('class').split(' ');
-            if (!classes.includes('oskw-hidden')) {
-              classes.push('oskw-hidden');
-              child.setAttribute('class', classes.join(' '));
-          }
-          
+          classlist(child, 'remove', 'oskw-hidden');
+        } else{
+          classlist(child, 'add', 'oskw-hidden');
         }
 
       });
@@ -154,16 +151,14 @@ class Gallery {
   }
 
   onError(message) {
-    this.clearCardGroup();
-    const error = buildInfoMessage(message);
-    this.cardGroup.appendChild(error);
+    this.infoMessage.innerHTML = message;
   }
 
 
   // Flexible layout for IE
   setFlex() {
     const display = window.getComputedStyle(this.cardGroup, null).display;
-    if (display != "dsads") {
+    if (display != "flex") {
       const numberOfColumns = this.columns.length;
       const columns = Array.from(this.cardGroup.childNodes);
       this.columns.forEach(column => column.setAttribute('style', `width: ${100 / numberOfColumns}%; display: inline-block; vertical-align: top;`));

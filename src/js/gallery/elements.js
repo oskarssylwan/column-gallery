@@ -56,10 +56,9 @@ export const buildCardGroup = () => {
   return cardGroup;
 }
 
-export const buildInfoMessage = (message) => {
+export const buildInfoMessage = () => {
   const InfoMessage = document.createElement('div');
-  InfoMessage.setAttribute('class', 'oskw-error-message');
-  InfoMessage.innerHTML = message;
+  InfoMessage.setAttribute('class', 'oskw-info-message');
   return InfoMessage;
 }
 

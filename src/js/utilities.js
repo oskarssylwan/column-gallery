@@ -7,17 +7,37 @@ export const fetch = (url, callback, onError) => {
   window.jsoncallback = callback;
   script.src = url + '&jsoncallback=jsoncallback';
   script.onerror = () => onError();
-  gallery.appendChild(script);
+
+  script.addEventListener('load', () => {
+      console.log('hello');
+     gallery.removeChild(script)
+   });
+
+   gallery.appendChild(script);
 }
 
-export const toggleClass = (element, className) => {
-  let classes = element.getAttribute('class');
-  classes = classes.split(' ');
+// all this just to add/remove a class IE......
+export const classlist = (element, operation, className) => {
+  switch (operation) {
+    case 'add':
+      let classes = element.getAttribute('class').split(' ');
 
-  if (classes.includes(className)) {
-    
-  } else {
+      if (!classes.includes(className)) {
+        classes.push(className);
+        element.setAttribute('class', classes.join(' '));
+      }
 
+      break;
+    case 'remove': {
+      let classes = element.getAttribute('class').split(' ');
+      const index = classes.indexOf(className);
+
+      if (index !== -1 ) {
+        classes.splice(index, 1);
+        element.setAttribute('class', classes.join(' '));
+      }
+
+    }
   }
 }
 

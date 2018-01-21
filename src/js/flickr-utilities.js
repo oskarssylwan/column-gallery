@@ -5,7 +5,7 @@ export const buildDataObjects = (flickrData) => {
     return {
       title: item.title,
       date_taken: formatDate(item.date_taken),
-      url: item.media.m,
+      url: changeSize(item.media.m, 'm'),
       link: item.link,
       dimensions: extractDimensions(item.description)
     }
@@ -24,6 +24,10 @@ export const formatDate = (string) => {
   const formatedDate = string.match(/\d{4}-\d{2}-\d{2}/i)[0]
                              .replace(/-/g, ' / ');
   return formatedDate;
+}
+
+const changeSize = (url, size) => {
+  return url.replace(url.match(/.\.jpg/i)[0],  `${size}.jpg`);
 }
 
 // Not working correctly: YET

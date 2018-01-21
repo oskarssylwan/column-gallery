@@ -13,6 +13,7 @@
     width: 100%;
     height: 100%;
     padding: $space-inset-s;
+    position: relative;
     .oskw-column {display: inline-block;}
 
     .oskw-card {
@@ -55,9 +56,11 @@
     }
   }
 
-  .oskw-error-message {
-      color: hsl(0, 0%, 40%);
+  .oskw-info-message {
+      // position: absolute;
+      // top: 0; bottom: 0;
       width: 100%;
+      color: hsl(0, 0%, 40%);
       text-align: center;
       padding: $space-inset-stretch-m;
   }
