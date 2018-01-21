@@ -1,6 +1,5 @@
 
 documentation
-separate color
 
 DONE
   setup task runners
@@ -13,6 +12,8 @@ DONE
     alternative for flexbox
     loading icon alternative for ie
   slow load InfoMessage
+  separate color
+  
 
 
 POSTPONED

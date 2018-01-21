@@ -7,19 +7,25 @@ import { buildImgCard,
         buildLoadingIcon } from './elements';
 
 class Gallery {
+  
   constructor(options) {
     this.options = options;
+
+    // Save element references
     this.gallery = document.querySelector(`#${options.galleryId}`);
     this.cardGroup = buildCardGroup();
-    this.updateDimensions()
-    this.columns = [];
-    this.images = [];
     this.infoMessage = buildInfoMessage();
-    this.prevNumberOfColumns =  0;
+
+    // Render elements to dom
     this.infoMessage.appendChild(buildLoadingIcon());
     this.gallery.appendChild(this.infoMessage);
     this.gallery.appendChild(this.cardGroup);
 
+    // instansiate class members
+    this.updateDimensions()
+    this.columns = [];
+    this.images = [];
+    this.prevNumberOfColumns =  0;
     this.firstImageLoaded = false;
 
   }
@@ -104,6 +110,26 @@ class Gallery {
     });
   }
 
+  // Flexible layout for IE
+  setFlex() {
+    const display = window.getComputedStyle(this.cardGroup, null).display;
+    if (display != "flex") {
+      const numberOfColumns = this.columns.length;
+      const columns = Array.from(this.cardGroup.childNodes);
+      this.columns.forEach(column => column.setAttribute('style', `width: ${100 / numberOfColumns}%; display: inline-block; vertical-align: top;`));
+    }
+  }
+
+  clearCardGroup() {
+    Array.from(this.cardGroup.childNodes)
+         .forEach(child => this.cardGroup.removeChild(child));
+  }
+
+  onError(message) {
+    this.infoMessage.innerHTML = message;
+  }
+
+  // Tries to stack the columns into even heights
   spreadEven(imgDataObjects, numberOfColumns) {
     const reducer = (totalHeight, curImgObj) => totalHeight + curImgObj.height;
     const totalStackHeight = imgDataObjects.reduce(reducer, 0);
@@ -145,25 +171,6 @@ class Gallery {
      return  output.map(item => item.columnItems);
   }
 
-  clearCardGroup() {
-    Array.from(this.cardGroup.childNodes)
-         .forEach(child => this.cardGroup.removeChild(child));
-  }
-
-  onError(message) {
-    this.infoMessage.innerHTML = message;
-  }
-
-
-  // Flexible layout for IE
-  setFlex() {
-    const display = window.getComputedStyle(this.cardGroup, null).display;
-    if (display != "flex") {
-      const numberOfColumns = this.columns.length;
-      const columns = Array.from(this.cardGroup.childNodes);
-      this.columns.forEach(column => column.setAttribute('style', `width: ${100 / numberOfColumns}%; display: inline-block; vertical-align: top;`));
-    }
-  }
 }
 
 export default Gallery;
