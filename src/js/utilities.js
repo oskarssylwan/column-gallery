@@ -9,7 +9,6 @@ export const fetch = (url, callback, onError) => {
   script.onerror = () => onError();
 
   script.addEventListener('load', () => {
-      console.log('hello');
      gallery.removeChild(script)
    });
 

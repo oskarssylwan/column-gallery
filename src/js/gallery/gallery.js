@@ -7,7 +7,7 @@ import { buildImgCard,
         buildLoadingIcon } from './elements';
 
 class Gallery {
-  
+
   constructor(options) {
     this.options = options;
 
@@ -31,6 +31,7 @@ class Gallery {
   }
 
   populate(imageData) {
+    console.log('are you populationg?')
     this.loadImages(imageData);
     this.renderColumns();
     window.onresize = () => this.onDimensionChange();
