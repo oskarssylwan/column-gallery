@@ -32,6 +32,7 @@ class Gallery {
 
   populate(imageData) {
     console.log('are you populationg?')
+    this.reset();
     this.loadImages(imageData);
     this.renderColumns();
     window.onresize = () => this.onDimensionChange();
@@ -43,6 +44,20 @@ class Gallery {
         this.onError('This is takig longer than we expected....');
       }
     }, 1500)
+  }
+
+  reset() {
+    Array.from(this.gallery.childNodes)
+         .forEach(child => {
+           console.log(child);
+           this.gallery.removeChild(child)
+         });
+
+   Array.from(this.infoMessage.childNodes)
+        .forEach(child => this.infoMessage.removeChild(child));
+    this.infoMessage.appendChild(buildLoadingIcon());
+    this.gallery.appendChild(this.infoMessage);
+    this.gallery.appendChild(this.cardGroup);
   }
 
   loadImages(imageData) {

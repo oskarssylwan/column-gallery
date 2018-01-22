@@ -12,9 +12,10 @@ import { buildDataObjects } from './flickr-utilities';
 // Runtime
 const gallery = new Gallery(galleryOptions);
 const url = buildUrl();
+const form = document.querySelector('.header-search form');
 const searchInput = document.querySelector('.header-search input');
 
-searchInput.addEventListener('change', (e) => search(e));
+form.addEventListener('submit', (e) => search(e));
 
 // Default show
 fetch(url, (flickrData) => {
@@ -37,7 +38,9 @@ function onError() {
 }
 
 function search(event) {
-  const value = event.target.value;
+  event.preventDefault();
+  console.log('submiting?');
+  const value = searchInput.value;
   if (value.length > 3 ) {
     fetch(buildUrl(value), (flickrData) => {
       const imgData = buildDataObjects(flickrData);
