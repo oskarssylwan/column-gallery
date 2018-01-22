@@ -7,7 +7,7 @@ import { buildImgCard,
         buildLoadingIcon } from './elements';
 
 class Gallery {
-  
+
   constructor(options) {
     this.options = options;
 
@@ -31,22 +31,37 @@ class Gallery {
   }
 
   populate(imageData) {
+    console.log('are you populationg?')
+    this.reset();
     this.loadImages(imageData);
     this.renderColumns();
     window.onresize = () => this.onDimensionChange();
 
-    window.setTimeout(() => {
+    const wait = window.setTimeout(() => {
       if (imageData.length < 1 ) {
         this.onError("We couldn't find any images!");
       } else if (!this.firstImageLoaded) {
         this.onError('This is takig longer than we expected....');
       }
+      window.clearTimeout(wait);
     }, 1500)
+
+  }
+
+  reset() {
+    this.clearCardGroup();
+    this.firstImageLoaded = false;
+    this.prevNumberOfColumns =  0;
+    // this.infoMessage.appendChild(buildLoadingIcon());
   }
 
   loadImages(imageData) {
     const onLoad = () => {
-      if (!this.firstImageLoaded) this.gallery.removeChild(this.infoMessage);
+      if (!this.firstImageLoaded) {
+        Array.from(this.infoMessage.childNodes)
+        .forEach(child => this.infoMessage.removeChild(child))
+      }
+
       this.firstImageLoaded = true;
       this.toggleImageVisibility();
     };

@@ -1,7 +1,6 @@
 import options from './gallery/options';
 const gallery = document.querySelector(`#${options.galleryId}`);
 
-
 export const fetch = (url, callback, onError) => {
   const script = document.createElement('script');
   window.jsoncallback = callback;
@@ -9,7 +8,6 @@ export const fetch = (url, callback, onError) => {
   script.onerror = () => onError();
 
   script.addEventListener('load', () => {
-      console.log('hello');
      gallery.removeChild(script)
    });
 
