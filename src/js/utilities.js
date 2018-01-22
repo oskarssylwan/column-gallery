@@ -1,7 +1,5 @@
 import options from './gallery/options';
-// const gallery = document.querySelector(`#${options.galleryId}`);
-const body = document.querySelector(`body`);
-
+const gallery = document.querySelector(`#${options.galleryId}`);
 
 export const fetch = (url, callback, onError) => {
   const script = document.createElement('script');
@@ -10,10 +8,10 @@ export const fetch = (url, callback, onError) => {
   script.onerror = () => onError();
 
   script.addEventListener('load', () => {
-     body.removeChild(script)
+     gallery.removeChild(script)
    });
 
-   body.appendChild(script);
+   gallery.appendChild(script);
 }
 
 // all this just to add/remove a class IE......

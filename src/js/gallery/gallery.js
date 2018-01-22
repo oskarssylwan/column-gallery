@@ -37,32 +37,31 @@ class Gallery {
     this.renderColumns();
     window.onresize = () => this.onDimensionChange();
 
-    window.setTimeout(() => {
+    const wait = window.setTimeout(() => {
       if (imageData.length < 1 ) {
         this.onError("We couldn't find any images!");
       } else if (!this.firstImageLoaded) {
         this.onError('This is takig longer than we expected....');
       }
+      window.clearTimeout(wait);
     }, 1500)
+
   }
 
   reset() {
-    Array.from(this.gallery.childNodes)
-         .forEach(child => {
-           console.log(child);
-           this.gallery.removeChild(child)
-         });
-
-   Array.from(this.infoMessage.childNodes)
-        .forEach(child => this.infoMessage.removeChild(child));
-    this.infoMessage.appendChild(buildLoadingIcon());
-    this.gallery.appendChild(this.infoMessage);
-    this.gallery.appendChild(this.cardGroup);
+    this.clearCardGroup();
+    this.firstImageLoaded = false;
+    this.prevNumberOfColumns =  0;
+    // this.infoMessage.appendChild(buildLoadingIcon());
   }
 
   loadImages(imageData) {
     const onLoad = () => {
-      if (!this.firstImageLoaded) this.gallery.removeChild(this.infoMessage);
+      if (!this.firstImageLoaded) {
+        Array.from(this.infoMessage.childNodes)
+        .forEach(child => this.infoMessage.removeChild(child))
+      }
+
       this.firstImageLoaded = true;
       this.toggleImageVisibility();
     };
