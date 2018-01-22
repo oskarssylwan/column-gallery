@@ -18,7 +18,7 @@ JavasScript based Pinterest style gallery. Fully responsive and easy to implemen
 ## Getting Started
 Run these commands to get up and running. Keep in mind that if you are developing on windows
 you need to run the commands from a unix like terminal,
-for example Git Bash.
+for example Git Bash. If the build fails try removing the mkdir script call from the build:all script in package.json. And then manually create the build folder.
 ```
 git clone https://github.com/oskarssylwan/image-gallery
 cd image-gallery
