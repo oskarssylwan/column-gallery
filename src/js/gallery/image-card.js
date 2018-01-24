@@ -15,7 +15,9 @@ class ImageCard {
   }
 
   onLoad(event) {
-    this.onLoadProp();
+    this.loaded = true;
+    this.element.classList.remove('oskw-hidden');
+    if (this.onLoadProp) this.onLoadProp();
   }
 
 }

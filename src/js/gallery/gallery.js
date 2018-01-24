@@ -31,7 +31,6 @@ class Gallery {
   }
 
   populate(imageData) {
-    console.log('are you populationg?')
     this.reset();
     this.loadImages(imageData);
     this.renderColumns();
@@ -61,9 +60,7 @@ class Gallery {
         Array.from(this.infoMessage.childNodes)
         .forEach(child => this.infoMessage.removeChild(child))
       }
-
       this.firstImageLoaded = true;
-      this.toggleImageVisibility();
     };
 
     this.images = imageData.map(data =>
@@ -73,7 +70,6 @@ class Gallery {
   onDimensionChange () {
     this.updateDimensions();
     this.renderColumns();
-    this.toggleImageVisibility();
   }
 
   updateDimensions() {
@@ -88,8 +84,6 @@ class Gallery {
     const columnCountDifference = Math.abs(numberOfColumns - this.prevNumberOfColumns);
 
     if ( columnCountDifference > 0) {
-      if (this.firstImageLoaded ) this.clearCardGroup();
-
       const columns = this.spreadEven(this.images, numberOfColumns)
                       .map(columnItems => {
                         const column = buildColumn();
@@ -99,39 +93,6 @@ class Gallery {
                       });
       this.columns = columns;
       this.prevNumberOfColumns = numberOfColumns;
-    }
-
-    this.setFlex();
-  }
-
-  toggleImageVisibility() {
-    let galleryContainerHeight = window.getComputedStyle(this.gallery.parentNode, null).height;
-    galleryContainerHeight = parseInt(galleryContainerHeight);
-
-    this.columns.forEach(column => {
-      const children = Array.from(column.childNodes);
-      let imageStackHeight = 0;
-
-      children.forEach(child => {
-        imageStackHeight += child.offsetHeight;
-
-        if (imageStackHeight <  galleryContainerHeight ) {
-          classlist(child, 'remove', 'oskw-hidden');
-        } else{
-          classlist(child, 'add', 'oskw-hidden');
-        }
-
-      });
-    });
-  }
-
-  // Flexible layout for IE
-  setFlex() {
-    const display = window.getComputedStyle(this.cardGroup, null).display;
-    if (display != "flex") {
-      const numberOfColumns = this.columns.length;
-      const columns = Array.from(this.cardGroup.childNodes);
-      this.columns.forEach(column => column.setAttribute('style', `width: ${100 / numberOfColumns}%; display: inline-block; vertical-align: top;`));
     }
   }
 
