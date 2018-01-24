@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ./src/js",
     "serve": "http-server ./build -c-1 -o",
-    "mkdir": "mkdir -p ./build",
+    "mkdir": "mkdir build",
     "build:html": "cp ./src/index.html ./build/",
     "build:sass": "node-sass-chokidar --output-style compressed src/sass -o ./build",
     "build:js": "webpack --optimize-minimize",
