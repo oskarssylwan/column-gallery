@@ -48,18 +48,15 @@ class Gallery {
   }
 
   reset() {
-    this.clearCardGroup();
+    this.removeChildren(this.cardGroup);
     this.firstImageLoaded = false;
     this.prevNumberOfColumns =  0;
-    // this.infoMessage.appendChild(buildLoadingIcon());
+    this.infoMessage.appendChild(buildLoadingIcon());
   }
 
   loadImages(imageData) {
     const onLoad = () => {
-      if (!this.firstImageLoaded) {
-        Array.from(this.infoMessage.childNodes)
-        .forEach(child => this.infoMessage.removeChild(child))
-      }
+      if (!this.firstImageLoaded) this.removeChildren(this.infoMessage);
       this.firstImageLoaded = true;
     };
 
@@ -84,7 +81,7 @@ class Gallery {
     const columnCountDifference = Math.abs(numberOfColumns - this.prevNumberOfColumns);
 
     if ( columnCountDifference > 0) {
-      this.clearCardGroup();
+      this.removeChildren(this.cardGroup);
       const columns = this.spreadEven(this.images, numberOfColumns)
                       .map(columnItems => {
                         const column = buildColumn();
@@ -97,9 +94,9 @@ class Gallery {
     }
   }
 
-  clearCardGroup() {
-    Array.from(this.cardGroup.childNodes)
-         .forEach(child => this.cardGroup.removeChild(child));
+  removeChildren(parent) {
+    Array.from(parent.childNodes)
+         .forEach(child => parent.removeChild(child));
   }
 
   onError(message) {
