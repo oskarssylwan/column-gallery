@@ -84,6 +84,7 @@ class Gallery {
     const columnCountDifference = Math.abs(numberOfColumns - this.prevNumberOfColumns);
 
     if ( columnCountDifference > 0) {
+      this.clearCardGroup();
       const columns = this.spreadEven(this.images, numberOfColumns)
                       .map(columnItems => {
                         const column = buildColumn();
