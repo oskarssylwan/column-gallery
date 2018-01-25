@@ -51,7 +51,7 @@ class Gallery {
     this.removeChildren(this.cardGroup);
     this.firstImageLoaded = false;
     this.prevNumberOfColumns =  0;
-    this.infoMessage.appendChild(buildLoadingIcon());
+    // this.infoMessage.appendChild(buildLoadingIcon());
   }
 
   loadImages(imageData) {
