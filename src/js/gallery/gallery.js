@@ -8,7 +8,6 @@ import { buildImgCard,
 
 class Gallery {
 
-
   constructor(options) {
     this.options = options;
 

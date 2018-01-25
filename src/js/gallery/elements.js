@@ -7,12 +7,12 @@ export const buildImgCard = (title, date_taken, url, link, onLoad)  => {
   const imgWrapper = document.createElement('div');
   const img = document.createElement('img');
 
-  card.setAttribute('class', 'oskw-card oskw-not-loaded oskw-hidden');
-  innerContent.setAttribute('class', 'oskw-inner-content');
+  card.classList.add('oskw-card', 'oskw-not-loaded', 'oskw-hidden');
+  innerContent.classList.add('oskw-inner-content');
   innerContent.href = link;
   innerContent.target = '_blank';
-  body.setAttribute('class', 'oskw-body');
-  imgWrapper.setAttribute('class', 'oskw-img-wrapper');
+  body.classList.add('oskw-body');
+  imgWrapper.classList.add('oskw-img-wrapper');
   img.setAttribute('src', url);
   img.setAttribute('alt', title);
   img.addEventListener('load', () => onLoad());
@@ -28,7 +28,7 @@ export const buildImgCard = (title, date_taken, url, link, onLoad)  => {
 
 export const buildColumn = () => {
   const column = document.createElement('div');
-  column.setAttribute('class', 'oskw-column');
+  column.classList.add('oskw-column');
   return column;
 }
 
@@ -37,9 +37,9 @@ export const buildCardInfo = (titleData, dateData) => {
   const title = document.createElement('h5');
   const date = document.createElement('span');
 
-  info.setAttribute('class', 'oskw-info');
-  title.setAttribute('class', 'oskw-title');
-  date.setAttribute('class', 'oskw-date');
+  info.classList.add('oskw-info');
+  title.classList.add('oskw-title');
+  date.classList.add('oskw-date');
 
   title.innerHTML = titleData;
   date.innerHTML = dateData;
@@ -52,18 +52,18 @@ export const buildCardInfo = (titleData, dateData) => {
 
 export const buildCardGroup = () => {
   const cardGroup = document.createElement('div');
-  cardGroup.setAttribute('class', 'oskw-card-group');
+  cardGroup.classList.add('oskw-card-group');
   return cardGroup;
 }
 
 export const buildInfoMessage = () => {
   const InfoMessage = document.createElement('div');
-  InfoMessage.setAttribute('class', 'oskw-info-message');
+  InfoMessage.classList.add('oskw-info-message');
   return InfoMessage;
 }
 
 export const buildLoadingIcon = () => {
   const img = document.createElement('div');
-  img.setAttribute('class', 'oskw-loading-icon oskw-rotating');
+  img.classList.add('oskw-loading-icon', 'oskw-rotating');
   return img;
 }
