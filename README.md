@@ -1,6 +1,6 @@
 # Pinterest Style Column Gallery
 
-JavasScript based Pinterest style gallery. Fully responsive and easy to implement. Supports latest versions of Chrome and Firefox, as well as  Internet Explorer 9 and upp.
+JavasScript based Pinterest style gallery. Fully responsive and easy to implement. Supports latest versions of Chrome and Firefox. Support for Internet Explorer 9 and up has moved to [this branch](https://github.com/oskarssylwan/image-gallery/tree/internet-explorer).
 
 
 ## Table of Contents
@@ -56,11 +56,11 @@ For the gallery to work it needs to have an entry somewhere in the html file (se
 </html>
 
 ```
-The gallery will fill the width of the container it's in. So if you want to control the size do it via the container. Don't' try directly alter the size of the gallery. The noscript tag isn't strictly necessary.
+The gallery will fill the width of the container it's in. So if you want to control the size do it via the container. Don't' try to directly alter the size of the gallery. The noscript tag isn't strictly necessary.
 
 ### Populating the gallery
 All you need to do is supply the gallery class with options via it's constructor
-and an array of objects containing image data via the populate() function.
+and an array of objects containing image data via the populate() method.
 ```
 // Gallery specific
 import galleryOptions from './gallery/options';
@@ -92,14 +92,11 @@ const imageDataObject = {
 In the options.js file you can find options to alter the maximum column width as well as the minimum amount of columns to show.
 
 ## Non Intrusive
-The gallery is designed to be as non intrusive as possible. Meaning it wont alter the flow of the page outside of it's container. It is recommended to have the height of the container set to auto but you can however set it to be a fixed height since the images that would partially overflow or overflow completely wont render.
+The gallery is designed to be as non intrusive as possible. Meaning it wont alter the flow of the page outside of it's container.
+
+The gallery is designed to take up as much height it needs to so it's recommended that the containers height is set to auto. The images won't overflow if you set the container to a fixed height, however, if you wish to do so it's recommended that you use the [Internet Explorer](https://github.com/oskarssylwan/image-gallery/tree/internet-explorer)   branch.
 
 The css classes are prefixed to prevent unwanted inheritance.
 
 ## Improvements
-There are a handful of performance improvements to be made. Currently every image load triggers a re-calculation
-of the total stack height in each column. This is to prevent images that are overflowing from displaying.
-
-The error information system is also a bit of a hack job and is in need of a more thought out implementation.
-
-The current version of the gallery can't be repopulated, meaning it wont work to feed it data dynamically from a search input
+The error information system is a bit of a hack job and is in need of a more thought out implementation.
