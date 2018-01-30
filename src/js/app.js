@@ -3,7 +3,7 @@ import galleryOptions from './gallery/options';
 import Gallery from './gallery/gallery';
 
 // Needed for flickr integration
-import { fetch } from './utilities';
+import { fetchAsJSONP } from './utilities';
 import flickrOptions from './flickr-options';
 import { buildDataObjects } from './flickr-utilities';
 
@@ -18,7 +18,7 @@ const searchInput = document.querySelector('.header-search input');
 form.addEventListener('submit', (e) => search(e));
 
 // Default show
-fetch(url, (flickrData) => {
+fetchAsJSONP(url, (flickrData) => {
   const imgData = buildDataObjects(flickrData);
   gallery.populate(imgData);
 }, onError);
@@ -39,10 +39,9 @@ function onError() {
 
 function search(event) {
   event.preventDefault();
-  console.log('submiting?');
   const value = searchInput.value;
   if (value.length > 3 ) {
-    fetch(buildUrl(value), (flickrData) => {
+    fetchAsJSONP(buildUrl(value), (flickrData) => {
       const imgData = buildDataObjects(flickrData);
       gallery.populate(imgData);
     }, onError);
