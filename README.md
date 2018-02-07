@@ -1,6 +1,8 @@
 # Pinterest Style Column Gallery
 
-JavasScript based Pinterest style gallery. Fully responsive and easy to implement. Supports latest versions of Chrome and Firefox. Support for Internet Explorer 9 and up has moved to [this branch](https://github.com/oskarssylwan/image-gallery/tree/internet-explorer).
+JavasScript based Pinterest style gallery. Fully responsive and easy to implement. Supports latest versions of Chrome and Firefox.
+
+Support for Internet Explorer 9 and up has moved to [this branch](https://github.com/oskarssylwan/image-gallery/tree/internet-explorer).
 
 
 ## Table of Contents
