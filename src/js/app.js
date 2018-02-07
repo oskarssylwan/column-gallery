@@ -8,7 +8,6 @@ import flickrOptions from './flickr-options';
 import { buildDataObjects } from './flickr-utilities';
 
 
-
 // Runtime
 const gallery = new Gallery(galleryOptions);
 const url = buildUrl();
@@ -18,12 +17,9 @@ const searchInput = document.querySelector('.header-search input');
 form.addEventListener('submit', (e) => search(e));
 
 // Default show
-fetchAsJSONP(url, (flickrData) => {
-  const imgData = buildDataObjects(flickrData);
-  gallery.populate(imgData);
-}, onError);
-
-
+fetchAsJSONP(url)
+  .then(flickrData => gallery.populate(buildDataObjects(flickrData)))
+  .catch(onError);
 
 
 // Functions
@@ -41,9 +37,10 @@ function search(event) {
   event.preventDefault();
   const value = searchInput.value;
   if (value.length > 3 ) {
-    fetchAsJSONP(buildUrl(value), (flickrData) => {
-      const imgData = buildDataObjects(flickrData);
-      gallery.populate(imgData);
-    }, onError);
+
+    fetchAsJSONP(buildUrl(value))
+      .then(flickrData => gallery.populate(buildDataObjects(flickrData)))
+      .catch(onError);
+
   }
 }

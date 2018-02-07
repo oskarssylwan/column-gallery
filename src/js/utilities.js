@@ -1,15 +1,18 @@
 import options from './gallery/options';
 const gallery = document.querySelector(`#${options.galleryId}`);
 
-export const fetchAsJSONP = (url, callback, onError) => {
-  const script = document.createElement('script');
-  window.jsoncallback = callback;
-  script.src = url + '&jsoncallback=jsoncallback';
-  script.onerror = () => onError();
 
-  script.addEventListener('load', () => {
-     gallery.removeChild(script)
-   });
+export const fetchAsJSONP = (url) => {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    window.jsoncallback = resolve
+    script.src = url + '&jsoncallback=jsoncallback';
+    script.onerror = () => reject();
 
-   gallery.appendChild(script);
+    script.addEventListener('load', () => {
+       gallery.removeChild(script)
+     });
+
+     gallery.appendChild(script);
+  });
 }
