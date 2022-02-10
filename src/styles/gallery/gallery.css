@@ -1,0 +1,93 @@
+@import "../example.css";
+@import "./utilities.css";
+@import "./icons.css";
+@import "./animations.css";
+
+
+.oskw-gallery {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.oskw-gallery * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.oskw-gallery .oskw-card-group {
+  width: 100%;
+  height: 100%;
+  padding: var(--space-inset-s);
+  position: relative;
+}
+
+.oskw-gallery .oskw-card-group  .oskw-column {
+  display: inline-block;
+}
+
+.oskw-gallery .oskw-card-group .oskw-card {
+  padding: var(--space-inset-s);
+  transition: transform .3s ease, opacity .3s ease;
+}
+
+.oskw-gallery .oskw-card-group .oskw-card .oskw-inner-content {
+  display: block;
+  text-decoration: none;
+  background: hsl(0, 0%, 100%);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+  transition: transform .3s ease;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.oskw-gallery .oskw-card-group .oskw-card .oskw-inner-content:hover {
+  transform: scale(1.01);
+}
+
+.oskw-gallery .oskw-card-group .oskw-card .oskw-inner-content img {
+  border: none;
+}
+
+.oskw-gallery .oskw-card-group .oskw-card .oskw-info {
+  padding: var(--space-inset-stretch-s);
+  line-height: 1.5;
+  font-size: .9rem;
+  font-family: sans-serif;
+}
+
+.oskw-gallery .oskw-card-group .oskw-card .oskw-info .oskw-title {
+  font-size: 1rem;
+  color: var(--color-gray-40);
+}
+
+.oskw-gallery .oskw-card-group .oskw-card .oskw-info .oskw-date { color: var(--color-gray-60); }
+
+.oskw-gallery .oskw-img-wrapper {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+.oskw-gallery .oskw-img-wrapper img {
+  width: 100%;
+  height: auto;
+}
+
+.oskw-gallery .oskw-info-message {
+  width: 100%;
+  color: var(--color-gray-40);
+  text-align: center;
+  padding: var(--space-inset-stretch-m);
+}
+
+@supports (display: flex) and (flex: 1) {
+  .oskw-gallery .oskw-card-group {
+    display: flex;
+  }
+
+  .oskw-gallery .oskw-card-group .oskw-column {
+    flex: 1;
+  }
+}
